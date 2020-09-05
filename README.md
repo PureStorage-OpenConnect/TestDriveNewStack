@@ -1,3 +1,15 @@
+# WARNING
+
+**This REPO is not functioning yet**
+
+# Build notes
+
+20200905: CC
+ I created a setupScript.sh. It is meant to be thrown away, but it is a poor attempt at the os install script so I can do the kubernetes script
+
+
+
+
 # TestDriveNewStack
 
 This project was born out of a desire to offer our SE's, our customers, and potential customers a simple, concise, example of how valuable [Pure Service Orchestrator](https://github.com/purestorage/pso-csi#pure-service-orchestrator-pso-csi-driver)  and [Ansible Automation](https://galaxy.ansible.com/purestorage) could, or will, be in their environment.
@@ -29,11 +41,11 @@ Click here for more about [Pure Test Drive](https://www.purestorage.com/products
 
 Need persistent storage for your containers? Well, now you can simply have Kubernetes spin up a container and all you need to do is state whether or not you block or file, and how much!
 
-Here are some files to get you started. Simply run `kubectl apply -f <filename>` to get started. 
+Here are some files to get you started. Simply run `kubectl apply -f <filename>` to get started.
 
 * 1_createPVC.yaml - will create a persistent volume claim and let you see you easily interact with the Pure FlashArray.
 * 2_minio.yaml -
-* 3_service.yaml - 
+* 3_service.yaml -
 * 4_createsnap.yaml
 * 5_restoresnap.yaml
 * 6_minio-2.yaml
@@ -41,4 +53,4 @@ Here are some files to get you started. Simply run `kubectl apply -f <filename>`
 
 
 
-For any questions, reach out to bkuebler<at>gmail.com or chris<at>ccrow.org 
+For any questions, reach out to bkuebler<at>gmail.com or chris<at>ccrow.org
