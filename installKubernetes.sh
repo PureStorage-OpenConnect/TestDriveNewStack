@@ -9,21 +9,22 @@ ssh-keygen -t rsa -N '' -q -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 #clone required repositories
+# I had to remove the reference to the branch as it caused an error
 echo "#### Clone kubespray repo and copy inventory in to repo ####"
-git clone -b release-2.7 https://github.com/kubernetes-sigs/kubespray ~/kubespray
+git clone https://github.com/kubernetes-sigs/kubespray ~/kubespray
 
 # Move inventory and other kubespray variables in to place
-cp -rfv ~/TestDriveNewStack/Resources/inventory/testdrive ~/kubespray/inventory/
+cp -rfv ~/TestDriveNewStack/resources/kubernetes/inventory/testdrive ~/kubespray/inventory/
 
 
 # Install prereqs as we now have pip3
 echo "#### Install kubespray prereqs ####"
-pip3 install -r requirements.txt
+pip3 install -r ~/kubespray/requirements.txt
 
 # Install kubernetes
 echo "#### Install kubernetes ####"
 cd ~/kubespray
-ansible-playbook -i ~/TestDriveNewStack/resources/kubernetes/inventory/testdrive/inventory.ini cluster.yml -b
+ansible-playbook -i ~/kubespray/inventory/testdrive/inventory.ini cluster.yml -b
 
 
 echo "#### Install snapshot providers ####"

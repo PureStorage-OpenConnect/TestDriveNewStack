@@ -1,3 +1,4 @@
+clusterID: puretestdrive01
 arrays:
   FlashArrays:
     - MgmtEndPoint: "fa1.lab.local"
