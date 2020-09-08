@@ -4,8 +4,7 @@
 
 # Build notes
 
-20200905: CC
- I created a setupScript.sh. It is meant to be thrown away, but it is a poor attempt at the os install script so I can do the kubernetes script
+Placeholder for internal build notes.
 
 
 
