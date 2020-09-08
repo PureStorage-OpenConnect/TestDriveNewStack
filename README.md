@@ -23,7 +23,7 @@ Run install_ansible.sh and then you can run `ansible-playbook <filename>`
 
 The playbooks are straightforward, and actually demonstrate many of the things that Ansible is great at doing.
 
-* 0_getInfo.yaml - Shows a simple method of gathering data - Requires vault password of **pure**.
+* 0_getInfo.yaml - Shows a simple method of gathering data - Run with `ansible-playbook --ask-vault-pass 0_getInfo.yaml` - Requires vault password of **pure**.
 * 1_modHost.yaml - Fixes some inconsistent capitalization between the host and the array.
 * 2_createVol.yaml - You can see how Anible will create, map, format, mount, and edit /etc/fstab, all in one easy command.
 * 3_createActiveCluster.yaml - Shamelessly stolen from @sdodsley, this will create a synchronous relationship between 2 Flasharrays and protect our volume
