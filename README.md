@@ -29,6 +29,7 @@ The playbooks are straightforward, and actually demonstrate many of the things t
 * 3_createActiveCluster.yaml - Shamelessly stolen from @sdodsley, this will create a synchronous relationship between 2 Flasharrays and protect our volume
 * 4_createSnaps.yaml - Creates a snapshot of our new volume, copies it to a new volume, and then mounts it on our test linux server
 * 5_devSnaps.yaml - Hand this off to your development team and they will be able to refresh data on their own! No need to involve a storage admin.
+* 6_createYourVol.yaml - This will allow you to specify your own volume name, size, and mount point. Note that this will overwrite existing mounts, so only for demo purposes.
 
 As you can see, they are simple, self describing, and above all, *functional*. We would love to provide you with a Pure Test Drive voucher so you can try these out on your own!
 
