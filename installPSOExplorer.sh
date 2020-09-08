@@ -13,7 +13,3 @@ kubectl create namespace psoexpl
 
 # Install with default settings
 helm install pso-explorer pso-explorer/pso-explorer --namespace psoexpl
-
-
-
-

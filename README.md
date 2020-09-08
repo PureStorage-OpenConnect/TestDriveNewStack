@@ -8,7 +8,6 @@ Placeholder for internal build notes.
 
 
 
-
 # TestDriveNewStack
 
 This project was born out of a desire to offer our SE's, our customers, and potential customers a simple, concise, example of how valuable [Pure Service Orchestrator](https://github.com/purestorage/pso-csi#pure-service-orchestrator-pso-csi-driver)  and [Ansible Automation](https://galaxy.ansible.com/purestorage) could, or will, be in their environment.
@@ -34,9 +33,9 @@ Run the setup.sh script by typing the following:
 
 ## Try out Ansible
 
-Run install_ansible.sh and then you can run `ansible-playbook <filename>`
+Once setup is finished, you can then you can run `ansible-playbook <filename>`. Running them in order (0-6) is recommended.
 
-The playbooks are straightforward, and actually demonstrate many of the things that Ansible is great at doing.
+The playbooks are straightforward and actually demonstrate many of the things that Ansible is great at doing.
 
 * 0_getInfo.yaml - Shows a simple method of gathering data - Run with `ansible-playbook --ask-vault-pass 0_getInfo.yaml` - Requires vault password of **pure**.
 * 1_modHost.yaml - Fixes some inconsistent capitalization between the host and the array.
@@ -44,7 +43,7 @@ The playbooks are straightforward, and actually demonstrate many of the things t
 * 3_createActiveCluster.yaml - Shamelessly stolen from @sdodsley, this will create a synchronous relationship between 2 Flasharrays and protect our volume
 * 4_createSnaps.yaml - Creates a snapshot of our new volume, copies it to a new volume, and then mounts it on our test linux server
 * 5_devSnaps.yaml - Hand this off to your development team and they will be able to refresh data on their own! No need to involve a storage admin.
-* 6_createYourVol.yaml - This will allow you to specify your own volume name, size, and mount point. Note that this will overwrite existing mounts, so only for demo purposes.
+* 6_createYourVol.yaml - This will allow you to specify your own volume name, size, and mount point. *Note that this will overwrite existing mounts, so only for demo purposes.*
 
 As you can see, they are simple, self describing, and above all, *functional*. We would love to provide you with a Pure Test Drive voucher so you can try these out on your own!
 
