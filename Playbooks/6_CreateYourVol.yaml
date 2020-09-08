@@ -1,12 +1,12 @@
 ---
-- name: Create host src vol for demo and attch, format 
+- name: Create host src vol for demo and attch, format
   hosts: localhost
   gather_facts: true
   collections:
     - purestorage.flasharray
   vars_files:
-    - testdrive_vars.yaml
-  
+    - ../resources/testdrive_vars.yaml
+
   vars_prompt:
     - name: yourvolname
       prompt: "Enter volume name: "
@@ -32,13 +32,13 @@
         api_token: "{{ fa1_token }}"
     register: fa1_info
 
-  - name: Create your volume 
+  - name: Create your volume
     purefa_volume:
         name: "{{ yourvolname }}"
         size: "{{ yourvolcapacity }}"
         fa_url: "{{ fa1_ip }}"
         api_token: "{{ fa1_token }}"
-  
+
   - name: Get serial number of volume for your volume
     purefa_info:
         gather_subset: volumes

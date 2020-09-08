@@ -5,8 +5,8 @@
   collections:
   - purestorage.flasharray
   vars_files:
-  - testdrive_vars.yaml
-  - tokens.yaml
+  - ../resources/testdrive_vars.yaml
+  - ../resources/tokens.yaml
   tasks:
     - name: Get flasharray info
       purefa_info:

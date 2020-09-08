@@ -1,11 +1,11 @@
 ---
-- name: Create host src vol for demo and attch, format 
+- name: Create host src vol for demo and attch, format
   hosts: localhost
   gather_facts: true
   collections:
     - purestorage.flasharray
   vars_files:
-    - testdrive_vars.yaml
+    - ../resources/testdrive_vars.yaml
   tasks:
   - name: Get FlashArray information
     purefa_info:
@@ -23,7 +23,7 @@
         size: 100G
         fa_url: "{{ fa1_ip }}"
         api_token: "{{ fa1_token }}"
-  
+
   - name: Get serial number of volume for demo
     purefa_info:
         gather_subset: volumes

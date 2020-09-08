@@ -5,7 +5,7 @@
   collections:
   - purestorage.flasharray
   vars_files:
-  - testdrive_vars.yaml
+  - ../resources/testdrive_vars.yaml
   tasks:
 
         - name: Get array info
