@@ -9,6 +9,7 @@ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 #clone required repositories
 # I had to remove the reference to the branch as it caused an error
+echo " "
 echo "#### Clone kubespray repo and copy inventory in to repo ####"
 git clone https://github.com/kubernetes-sigs/kubespray ~/kubespray
 
@@ -16,15 +17,17 @@ git clone https://github.com/kubernetes-sigs/kubespray ~/kubespray
 cp -rfv ~/TestDriveNewStack/resources/kubernetes/inventory/testdrive ~/kubespray/inventory/
 
 # Install prereqs as we now have pip3
+echo " "
 echo "#### Install kubespray prereqs ####"
 pip3 install -r ~/kubespray/requirements.txt
 
 # Install kubernetes
+echo " "
 echo "#### Install kubernetes ####"
 cd ~/kubespray
 ansible-playbook -i ~/kubespray/inventory/testdrive/inventory.ini cluster.yml -b
 
-
+echo " "
 echo "#### Install snapshot providers ####"
 
 # install CRD with Beta release
@@ -39,6 +42,7 @@ kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snaps
 sleep 15
 
 #Install PSO
+echo " "
 echo "#### Update helm repos and install PSO ####"
 helm repo add pure https://purestorage.github.io/pso-csi
 helm repo update
@@ -65,6 +69,9 @@ want=$(kubectl get pods pso-csi-controller-0 |awk '{if(NR>1)print $2}'|awk -F'/'
     sleep 2
   elif [[ $have != 0 && $have == $want ]];then
     echo "Looks like PSO is up. $have out of $want up."
+    echo " "
+    echo "#########################################"
+    echo " "
     break
   fi
 
@@ -76,7 +83,7 @@ psoChecker
 
 #Install the purestorage snapshot class
 kubectl apply -f https://raw.githubusercontent.com/purestorage/pso-csi/master/pure-pso/snapshotclass.yaml
-
+echo " "
 echo "#### Changing hostname ####"
 
 # Fix the hostname as the case doesn't match the flasharray in testdrive.
@@ -90,5 +97,5 @@ export KUBECONFIG=$HOME/.admin.conf
 alias k="kubectl"
 source <(kubectl completion bash)
 complete -F __start_kubectl k
-
+echo " "
 echo "Kubernetes Setup Complete"

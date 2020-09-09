@@ -92,5 +92,5 @@ installKubernetes
 sleep 3
 echo " "
 echo "Installation complete. Run 'source .bashrc'\
- in order to use new aliases."
+ in your home directory order to use new aliases."
 echo " "
