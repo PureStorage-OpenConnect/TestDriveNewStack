@@ -31,7 +31,7 @@ function installPackages() {
   echo "##########################################"
   echo "####  Installing Python3 and Ansible  ####"
   echo "##########################################"
-  echo " " 
+  echo " "
 
   for pkg in "${APACKG[@]}";do
       if yum -q list installed "$pkg" > /dev/null 2>&1; then
@@ -60,12 +60,16 @@ function installAnsible() {
 }
 
 function installKubernetes() {
-  
+
   if [[ -f $kubesprayinstall ]]; then
-    echo " "
-    echo "Here is where we would be running $kubesprayinstall"
-    echo " "
-    # $kubesprayinstall
+    while true; do
+        read -p "Do you wish to install Kubernetes?" yn
+        case $yn in
+            [Yy]* ) $kubesprayinstall;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
   else
     echo "Please check to make sure that $kubesprayinstall exists"
   fi
