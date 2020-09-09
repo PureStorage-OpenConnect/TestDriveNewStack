@@ -71,6 +71,9 @@ After step 3, you can now log to minio using the service port. Find the port wit
 
 Continuing with the rest of the commands, which will take a snap and clone a new PVC from that snapshot. You can then continue with spinning up a new minio instance (default will be port 9001).
 
+For a snap restore demo, you can scale to 0 replicas, restore the snap, and scale replicas to 1. The command to scale replicas is:
+kubectl scale deploy minio-deployment --replicas=0
+
 #### Try out PSO Explorer
 
 Pure Service Orchestrator™ Explorer (or PSO Explorer) provides a web based user interface for Pure Service Orchestrator™. It shows details of the persistent volumes and snapshots that have been provisioned using PSO, showing provisioned space, actual used space, performance and growth characteristics. The PSO Explorer dashboard provides a quick overview of the number of volumes, snapshots, storageclasses and arrays in the cluster, in addition to the volume usage, the volume growth over the last 24 hours and cluster-level performance statistics.
