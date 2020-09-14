@@ -1,12 +1,9 @@
-# WARNING
+#### *Note that this project is for educational purposes only, and is meant to demonstrate what you can do with Pure. These playbooks and scripts have been developed only for use only in Pure Test Drive. You're free to adapt them to your environment, but you're responsible for testing and overall functionality. Have fun!*
 
-**This repo should be considered alpha at best**
-
-# Build notes
-
-Placeholder for internal build notes.
-
-
+# Build Notes
+* Added PSO via Kubespray
+* You can now create volumes with user input, feel free to modify for use with both virtual FlashArrays!
+* Added PSO Explorer, which you should definitely take a look at!
 
 # TestDriveNewStack
 
