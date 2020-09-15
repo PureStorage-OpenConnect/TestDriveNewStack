@@ -1,8 +1,4 @@
 ansible_python_interpreter: /usr/bin/python3
-fa1_ip: 172.16.3.101
-fa1_token: cd6ba527-a21f-a014-d80b-13687c33402d
-fa2_ip: 172.16.3.111
-fa2_token: ff703c77-4db4-5e84-6734-b2d37acce147
 demo_vol: ansible-src
 demo_pod: demo-pod
 fa1_iscsi_port: ct0.eth1
@@ -12,3 +8,5 @@ tgt_mount_path: /mnt/ansible-tgt
 orig_volume: linux-lun-01
 tgt_vol: ansible-tgt
 pod_vol: demo-pod::ansible-src
+fa1_ip: 10.0.0.11
+fa2_ip: 10.0.0.21
