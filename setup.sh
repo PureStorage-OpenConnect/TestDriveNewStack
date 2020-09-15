@@ -25,7 +25,6 @@ function main() {
       ssh-keygen -t rsa -N '' -q -f /root/.ssh/id_rsa
       #cat ~/.ssh/id_rsa.pub >> /home/pureuser/.ssh/authorized_keys
       #Populate the 'known_hosts' file
-      sshpass -p pureuser ssh-copy-id root@$(hostname -I)
       sshpass -p pureuser ssh-copy-id root@localhost
   fi
   }
@@ -52,6 +51,7 @@ function main() {
     APACKG=( epel-release
              python3 
 	     python3-pip
+             sg3_utils
              centos-release-ansible-29
              ansible
              vim
