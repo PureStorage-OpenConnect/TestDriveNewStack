@@ -9,7 +9,6 @@ set -o nounset
 set -o pipefail
 
 function main() {
-  echo "pureuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
   
   #Call for any external install files
   kubesprayinstall="./installKubernetes.sh"     #get the most recent kubespray install
@@ -20,17 +19,15 @@ function main() {
   # Setup host keys for ansible
   function genKeys () {
   echo "#### Generate SSH keys on local install ####"
-  if [[ -f /home/pureuser/.ssh/id_rsa ]];then
+  if [[ -f /root/.ssh/id_rsa ]];then
       echo "Skipping ssh-keygen. id_rsa already exists"
   else
-      ssh-keygen -t rsa -N '' -q -f /home/pureuser/.ssh/id_rsa
+      ssh-keygen -t rsa -N '' -q -f /root/.ssh/id_rsa
       #cat ~/.ssh/id_rsa.pub >> /home/pureuser/.ssh/authorized_keys
       #Populate the 'known_hosts' file
-      sshpass -p pureuser ssh -oStrictHostKeyChecking=no pureuser@$(hostname -I) echo "Probably a better way to set known_hosts :-/"
-      sshpass -p pureuser ssh -oStrictHostKeyChecking=no pureuser@localhost
-      sshpass -p pureuser ssh pureuser@localhost
+      sshpass -p pureuser ssh -oStrictHostKeyChecking=no $(hostname -I) echo "Probably a better way to set known_hosts :-/"
+      sshpass -p pureuser ssh -oStrictHostKeyChecking=no localhost
   fi
-      chown pureuser:pureuser /home/pureuser/.ssh/*
   }
 
 
@@ -129,9 +126,9 @@ function setApi() {
   #Let's run everything
   installPackages
   genKeys
-  testSSH
   setApi
   installAnsible
+  
   echo " =============================== "
   echo " "
   echo "If you'd like to install Kubernetes, answer 'yes' to the next prompt"
@@ -148,8 +145,12 @@ function setApi() {
    in your home directory order to use new aliases."
   echo " "
 }
+if [[ $(id -u) -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
 
-if [[ "$PWD" == /home/pureuser/TestDriveNewStack || "$PWD" == "$HOME" ]];then
+if [[ "$PWD" == /root/TestDriveNewStack || "$PWD" == "$HOME" ]];then
   main
 else
   echo "You are in "${PWD}". Please clone or copy to, and then run in /root/TestDriveNewstack"
