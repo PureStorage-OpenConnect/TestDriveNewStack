@@ -9,19 +9,30 @@ set -o nounset
 set -o pipefail
 
 function main() {
-  #statements
-
+  echo "pureuser ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+  
   #Call for any external install files
-  kubesprayinstall="./installKubernetes.sh"     #get the most recent \
-                                                  #kubesprayinstall
+  kubesprayinstall="./installKubernetes.sh"     #get the most recent kubespray install
   ansibleinstall="./installAnsible.sh"
+  
+
   # Install necessary packages. Currently, only python2 installed.
   # Setup host keys for ansible
+  function genKeys () {
   echo "#### Generate SSH keys on local install ####"
-  ssh-keygen -t rsa -N '' -q -f ~/.ssh/id_rsa
-  cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-  #Populate the 'known_hosts' file
-  ssh -oStrictHostKeyChecking=no localhost echo "Probably a better way to set known_hosts :-/"
+  if [[ -f /home/pureuser/.ssh/id_rsa ]];then
+      echo "Skipping ssh-keygen. id_rsa already exists"
+  else
+      ssh-keygen -t rsa -N '' -q -f /home/pureuser/.ssh/id_rsa
+      #cat ~/.ssh/id_rsa.pub >> /home/pureuser/.ssh/authorized_keys
+      #Populate the 'known_hosts' file
+      sshpass -p pureuser ssh -oStrictHostKeyChecking=no pureuser@$(hostname -I) echo "Probably a better way to set known_hosts :-/"
+      sshpass -p pureuser ssh -oStrictHostKeyChecking=no pureuser@localhost
+      sshpass -p pureuser ssh pureuser@localhost
+  fi
+      chown pureuser:pureuser /home/pureuser/.ssh/*
+  }
+
 
   function testSSH() {
     ssh localhost uptime
@@ -41,6 +52,7 @@ function main() {
   echo "#############################################################"
   echo " "
   echo " "
+ 
   function installPackages() {
     #install all required Linux packages
     APACKG=( epel-release
@@ -48,7 +60,9 @@ function main() {
              centos-release-ansible-29
              ansible
              vim
-             python2-jmespath )
+             python2-jmespath 
+             sshpass
+           )
 
     echo "##########################################"
     echo "####  Installing Python3 and Ansible  ####"
@@ -70,6 +84,20 @@ function main() {
     echo "alias P='cd ~/ansibletest/Playbooks'" >> ~/.bashrc
 
   }
+  
+function setApi() {
+      fa1_ip='10.0.0.11'
+      fa2_ip='10.0.0.21'
+
+
+        sshpass -p pureuser ssh -o StrictHostKeyChecking=no pureuser@${fa1_ip} "pureadmin create --api-token pureuser"
+        sshpass -p pureuser ssh -o StrictHostKeyChecking=no pureuser@${fa2_ip} "pureadmin create --api-token pureuser"
+
+        fa1_token=$(sshpass -p pureuser ssh pureuser@${fa1_ip} "pureadmin list --api-token --expose --notitle pureuser" | awk '{print $3}')
+        fa2_token=$(sshpass -p pureuser ssh pureuser@${fa2_ip} "pureadmin list --api-token --expose --notitle pureuser" | awk '{print $3}')
+        echo "fa1_token: $fa1_token" >> ./resources/testdrive_vars.yaml
+        echo "fa2_token: $fa2_token" >> ./resources/testdrive_vars.yaml
+}
 
   function installAnsible() {
     #statements
@@ -100,6 +128,9 @@ function main() {
 
   #Let's run everything
   installPackages
+  genKeys
+  testSSH
+  setApi
   installAnsible
   echo " =============================== "
   echo " "
@@ -108,7 +139,7 @@ function main() {
   echo "If you answer 'no', you can manually run the installKubernetes.sh script"
   echo "when you'd like"
   echo " "
-  echo " ===================="
+  echo " ================================"
   installKubernetes
 
   sleep 3
@@ -118,7 +149,7 @@ function main() {
   echo " "
 }
 
-if [[ "$PWD" == /root/TestDriveNewStack || "$PWD" == "$HOME" ]];then
+if [[ "$PWD" == /home/pureuser/TestDriveNewStack || "$PWD" == "$HOME" ]];then
   main
 else
   echo "You are in "${PWD}". Please clone or copy to, and then run in /root/TestDriveNewstack"
