@@ -25,8 +25,8 @@ function main() {
       ssh-keygen -t rsa -N '' -q -f /root/.ssh/id_rsa
       #cat ~/.ssh/id_rsa.pub >> /home/pureuser/.ssh/authorized_keys
       #Populate the 'known_hosts' file
-      sshpass -p pureuser ssh -oStrictHostKeyChecking=no $(hostname -I) echo "Probably a better way to set known_hosts :-/"
-      sshpass -p pureuser ssh -oStrictHostKeyChecking=no localhost
+      sshpass -p pureuser ssh-copy-id root@$(hostname -I)
+      sshpass -p pureuser ssh-copy-id root@localhost
   fi
   }
 
@@ -41,19 +41,17 @@ function main() {
   else
     echo "###########################################################"
     echo "Check for ssh files before running playbooks"
-    sleep 5
+    echo " "
+    echo "#############################################################"
+    echo " "
+    echo " "
   fi
-
-  echo " "
-  echo " "
-  echo "#############################################################"
-  echo " "
-  echo " "
  
   function installPackages() {
     #install all required Linux packages
     APACKG=( epel-release
-             python3 python3-pip
+             python3 
+	     python3-pip
              centos-release-ansible-29
              ansible
              vim
@@ -82,7 +80,7 @@ function main() {
 
   }
   
-function setApi() {
+  function setApi() {
       fa1_ip='10.0.0.11'
       fa2_ip='10.0.0.21'
 
@@ -94,7 +92,7 @@ function setApi() {
         fa2_token=$(sshpass -p pureuser ssh pureuser@${fa2_ip} "pureadmin list --api-token --expose --notitle pureuser" | awk '{print $3}')
         echo "fa1_token: $fa1_token" >> ./resources/testdrive_vars.yaml
         echo "fa2_token: $fa2_token" >> ./resources/testdrive_vars.yaml
-}
+  }
 
   function installAnsible() {
     #statements
@@ -102,7 +100,7 @@ function setApi() {
       echo "will run file $ansibleinstall"
       $ansibleinstall
     else
-      echo "Please check to make sure that $kubesprayinstall exists"
+      echo "Please check to make sure that $ansibleinstall exists"
     fi
   }
   echo " "
