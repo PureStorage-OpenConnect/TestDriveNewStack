@@ -1,9 +1,5 @@
 #### *Note that this project is for educational purposes only, and is meant to demonstrate what you can do with Pure. These playbooks and scripts have been developed only for use only in Pure Test Drive. You're free to adapt them to your environment, but you're responsible for testing and overall functionality. Have fun!*
 
-# Build Notes
-* Added PSO via Kubespray
-* You can now create volumes with user input, feel free to modify for use with both virtual FlashArrays!
-* Added PSO Explorer, which you should definitely take a look at!
 
 # TestDriveNewStack
 
@@ -11,6 +7,10 @@ This project was born out of a desire to offer our SE's, our customers, and pote
 
 Make sure to run `setup.sh` in order to set up your Pure Test Drive environment.
 
+## Build Notes
+* Added PSO via Kubespray
+* You can now create volumes with user input, feel free to modify for use with both virtual FlashArrays!
+* Added PSO Explorer, which you should definitely take a look at!
 
 ## Getting started
 
@@ -71,7 +71,7 @@ Continuing with the rest of the commands, which will take a snap and clone a new
 For a snap restore demo, you can scale to 0 replicas, restore the snap, and scale replicas to 1. The command to scale replicas is:
 kubectl scale deploy minio-deployment --replicas=0
 
-#### Try out PSO Explorer
+## Try out PSO Explorer
 
 Pure Service Orchestrator™ Explorer (or PSO Explorer) provides a web based user interface for Pure Service Orchestrator™. It shows details of the persistent volumes and snapshots that have been provisioned using PSO, showing provisioned space, actual used space, performance and growth characteristics. The PSO Explorer dashboard provides a quick overview of the number of volumes, snapshots, storageclasses and arrays in the cluster, in addition to the volume usage, the volume growth over the last 24 hours and cluster-level performance statistics.
 
