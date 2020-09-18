@@ -13,6 +13,19 @@ kubesprayinstall="./installKubernetes.sh"     #get the most recent \
                                                 #kubesprayinstall
 ansibleinstall="./installAnsible.sh"
 # Install necessary packages. Currently, only python2 installed.
+# Setup host keys for ansible
+echo "#### Generate SSH keys on local install ####"
+ssh-keygen -t rsa -N '' -q -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+#Populate the 'known_hosts' file
+ssh -oStrictHostKeyChecking=no localhost echo "Probably a better way to set known_hosts :-/"
+
+function testSSH() {
+  ssh localhost uptime
+}
+if [[ $? -eq 0 ]];then
+  echo "SSH is all good."
+fi
 
 echo " "
 echo " "
