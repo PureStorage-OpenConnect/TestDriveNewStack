@@ -23,8 +23,14 @@ ssh -oStrictHostKeyChecking=no localhost echo "Probably a better way to set know
 function testSSH() {
   ssh localhost uptime
 }
+testSSH
+
 if [[ $? -eq 0 ]];then
   echo "SSH is all good."
+else
+  echo "###########################################################"
+  echo "Check for ssh files before running playbooks"
+  sleep 5
 fi
 
 echo " "
