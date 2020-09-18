@@ -31,7 +31,7 @@ clusterFile="$HOME/kubespray/cluster.yml"
 #run the playbook
     if [[ -f $inventoryFile && -f $clusterFile ]];then
       $(cd $HOME/kubespray/)
-      "ansible-playbook -i ${inventoryFile} ${clusterFile} -b"
+      ansible-playbook -i ${inventoryFile} ${clusterFile} -b
     else
       echo "Please check to make sure that $inventoryFile and $clusterFile exist."
     fi
