@@ -2,13 +2,6 @@
 
 set -o pipefail
 
-# generate an ssh key for local login, this is required as kubespray uses ansible to log in to the nodes it installs:
-echo "#### Generate SSH keys on local install ####"
-ssh-keygen -t rsa -N '' -q -f ~/.ssh/id_rsa
-cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-#clone required repositories
-# I had to remove the reference to the branch as it caused an error
-
 echo " "
 echo "#### Clone kubespray repo and copy inventory in to repo ####"
 git clone https://github.com/kubernetes-sigs/kubespray ~/kubespray
