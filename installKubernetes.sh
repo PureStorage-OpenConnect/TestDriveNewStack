@@ -2,13 +2,13 @@
 
 set -o pipefail
 
-#generate an ssh key for local login, this is required as kubespray uses ansible to log in to the nodes it installs:
+# generate an ssh key for local login, this is required as kubespray uses ansible to log in to the nodes it installs:
 echo "#### Generate SSH keys on local install ####"
 ssh-keygen -t rsa -N '' -q -f ~/.ssh/id_rsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
-
 #clone required repositories
 # I had to remove the reference to the branch as it caused an error
+
 echo " "
 echo "#### Clone kubespray repo and copy inventory in to repo ####"
 git clone https://github.com/kubernetes-sigs/kubespray ~/kubespray
@@ -24,8 +24,18 @@ pip3 install -r ~/kubespray/requirements.txt
 # Install kubernetes
 echo " "
 echo "#### Install kubernetes ####"
-cd ~/kubespray
-ansible-playbook -i ~/kubespray/inventory/testdrive/inventory.ini cluster.yml -b
+
+function runInstallKub() {
+inventoryFile="$HOME/kubespray/inventory/testdrive/inventory.ini"
+clusterFile="$HOME/kubespray/cluster.yml"
+#run the playbook
+    if [[ -f $inventoryFile && -f $clusterFile ]];then
+      ansible-playbook -i $inventoryFile $clusterFile -b
+    else
+      echo "Please check to make sure that $inventoryFile and $clusterFile exist."
+    fi
+}
+runInstallKub
 
 echo " "
 echo "#### Install snapshot providers ####"
@@ -39,7 +49,35 @@ kubectl create -f  https://raw.githubusercontent.com/kubernetes-csi/external-sna
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/deploy/kubernetes/snapshot-controller/rbac-snapshot-controller.yaml
 kubectl apply -f https://raw.githubusercontent.com/kubernetes-csi/external-snapshotter/release-2.0/deploy/kubernetes/snapshot-controller/setup-snapshot-controller.yaml
 
-sleep 15
+function getSnap() {
+kubectl get pods snapshot-controller-0 2>&1 > /dev/null
+}
+
+function checkSnap() {
+
+count=0
+tries=10
+
+  while [[ $count != $tries ]];do
+  getSnap
+
+    if [[ $? -eq 0 ]];then
+      echo "Snapshotter appears to be up..."
+      break
+    else
+      echo "Waiting on the snapshotter."
+      ((count++))
+      sleep 2
+    fi
+  done
+
+  if [[ $count -eq $tries ]];then
+    echo "Check on the snapshotter, moving on."
+  fi
+}
+
+
+checkSnap
 
 #Install PSO
 echo " "
