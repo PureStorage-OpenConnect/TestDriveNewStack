@@ -30,7 +30,8 @@ inventoryFile="$HOME/kubespray/inventory/testdrive/inventory.ini"
 clusterFile="$HOME/kubespray/cluster.yml"
 #run the playbook
     if [[ -f $inventoryFile && -f $clusterFile ]];then
-      ansible-playbook -i $inventoryFile $clusterFile -b
+      $(cd $HOME/kubespray/)
+      "ansible-playbook -i ${inventoryFile} ${clusterFile} -b"
     else
       echo "Please check to make sure that $inventoryFile and $clusterFile exist."
     fi
@@ -106,7 +107,6 @@ want=$(kubectl get pods pso-csi-controller-0 |awk '{if(NR>1)print $2}'|awk -F'/'
     ((count++))
     sleep 2
   elif [[ $have != 0 && $have == $want ]];then
-    echo "Looks like PSO is up. $have out of $want up."
     echo " "
     echo "#########################################"
     echo " "
