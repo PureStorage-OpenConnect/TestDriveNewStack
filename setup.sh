@@ -121,4 +121,5 @@ function main() {
 if [[ "$PWD" == /root/TestDriveNewStack || "$PWD" == "$HOME" ]];then
   main
 else
-  echo "You are in "${PWD}". Please clone or copy to /root/TestDriveNewstack"
+  echo "You are in "${PWD}". Please clone or copy to, and then run in /root/TestDriveNewstack"
+fi
