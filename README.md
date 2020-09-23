@@ -34,9 +34,9 @@ Once setup is finished, you can then you can run `ansible-playbook <filename>`. 
 
 The playbooks are straightforward and actually demonstrate many of the things that Ansible is great at doing.
 
-* 0_getInfo.yaml - Shows a simple method of gathering data - Run with `ansible-playbook --ask-vault-pass 0_getInfo.yaml` - Requires vault password of **pure**.
-* 1_modHost.yaml - Fixes some inconsistent capitalization between the host and the array.
-* 2_createVol.yaml - You can see how Anible will create, map, format, mount, and edit /etc/fstab, all in one easy command.
+* 0_getInfo.yaml - Shows a simple method of gathering data and also demonstrating how you can encrypt sensitive information. - Run with `ansible-playbook --ask-vault-pass 0_getInfo.yaml` - Requires vault password of **pure**.
+* 1_modHost.yaml - Fixes some inconsistent capitalization between the host and the array. Great way to keep things consistent in your environment.
+* 2_createVol.yaml - You can see how Ansible will create, map, format, mount, and edit /etc/fstab, all in one easy command.
 * 3_createActiveCluster.yaml - Shamelessly stolen from @sdodsley, this will create a synchronous relationship between 2 Flasharrays and protect our volume
 * 4_createSnaps.yaml - Creates a snapshot of our new volume, copies it to a new volume, and then mounts it on our test linux server
 * 5_devSnaps.yaml - Hand this off to your development team and they will be able to refresh data on their own! No need to involve a storage admin.
