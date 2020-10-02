@@ -15,9 +15,9 @@ function installSDK() {
   echo "###########################################"
   echo "####  Installing the Pure Storage SDK  ####"
   echo "###########################################"
-  echo " " 
-  pip3 install purestorage
-  pip3 install jmespath
+  echo " "
+  python3 -m pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org purestorage
+  python3 -m pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org jmespath
 }
 
 # Install the Pure Storage collection
