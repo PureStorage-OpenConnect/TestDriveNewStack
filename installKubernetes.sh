@@ -12,7 +12,7 @@ cp -rfv ~/TestDriveNewStack/resources/kubernetes/inventory/testdrive ~/kubespray
 # Install prereqs as we now have pip3
 echo " "
 echo "#### Install kubespray prereqs ####"
-pip3 install -r ~/kubespray/requirements.txt
+pip3 install -r ~/kubespray/requirements.txt --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org
 
 # Install kubernetes
 echo " "
