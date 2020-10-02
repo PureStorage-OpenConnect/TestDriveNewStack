@@ -1,6 +1,5 @@
 #### *Note that this project is for educational purposes only, and is meant to demonstrate what you can do with Pure. These playbooks and scripts have been developed only for use only in Pure Test Drive. You're free to adapt them to your environment, but you're responsible for testing and overall functionality. Have fun!*
 
-
 # TestDriveNewStack
 
 This project was born out of a desire to offer our SE's, our customers, and potential customers a simple, concise, example of how valuable [Pure Service Orchestrator](https://github.com/purestorage/pso-csi#pure-service-orchestrator-pso-csi-driver)  and [Ansible Automation](https://galaxy.ansible.com/purestorage) could, or will, be in their environment.
@@ -13,6 +12,12 @@ Make sure to run `setup.sh` in order to set up your Pure Test Drive environment.
 * Added PSO Explorer, which you should definitely take a look at!
 
 ## Getting started
+
+*NOTE: With the new testdrive beta, I would recommend using the following command:*
+
+'''
+yum install git && git clone https://github.com/PureStorage-OpenConnect/TestDriveNewStack && cd TestDriveNewStack && git checkout testdrive-beta 
+'''
 
 Launch an "Introduction to FlashArray" lab from testdrive. Note that these scripts will not run in other environments without modification.
 
