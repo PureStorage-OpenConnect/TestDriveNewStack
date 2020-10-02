@@ -15,9 +15,9 @@ Make sure to run `setup.sh` in order to set up your Pure Test Drive environment.
 
 *NOTE: With the new testdrive beta, I would recommend using the following command:*
 
-'''
-yum install git && git clone https://github.com/PureStorage-OpenConnect/TestDriveNewStack && cd TestDriveNewStack && git checkout testdrive-beta 
-'''
+```
+yum install git && git clone https://github.com/PureStorage-OpenConnect/TestDriveNewStack && cd TestDriveNewStack && git checkout testdrive-beta
+```
 
 Launch an "Introduction to FlashArray" lab from testdrive. Note that these scripts will not run in other environments without modification.
 
