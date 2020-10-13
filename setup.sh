@@ -14,10 +14,6 @@ function main() {
   kubesprayinstall="./installKubernetes.sh"     #get the most recent kubespray install
   ansibleinstall="./installAnsible.sh"
 
-  function addKnownHost () {
-
-
-  }
   # Install necessary packages. Currently, only python2 installed.
   # Setup host keys for ansible
   function genKeys () {
