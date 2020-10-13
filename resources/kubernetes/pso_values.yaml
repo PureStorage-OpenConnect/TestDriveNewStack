@@ -1,7 +1,7 @@
 clusterID: puretestdrive01
 arrays:
   FlashArrays:
-    - MgmtEndPoint: "10.0.1.11"
-      APIToken: "cd6ba527-a21f-a014-d80b-13687c33402d"
-    - MgmtEndPoint: "10.0.1.21"
-      APIToken: "ff703c77-4db4-5e84-6734-b2d37acce147"
+    - MgmtEndPoint: "10.0.0.11"
+      APIToken: "FA1Token"
+    - MgmtEndPoint: "10.0.0.21"
+      APIToken: "FA2Token"
