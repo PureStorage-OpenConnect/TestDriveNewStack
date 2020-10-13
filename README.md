@@ -25,7 +25,8 @@ git clone https://github.com/PureStorage-OpenConnect/TestDriveNewStack
 
 Run the setup.sh script by typing the following:
 ```
-~/TestDriveNewStack/setup.sh
+cd ./TestDriveNewStack
+./setup.sh
 ```
 
 ## Try out Ansible
