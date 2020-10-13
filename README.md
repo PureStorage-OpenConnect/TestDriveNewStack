@@ -21,7 +21,13 @@ yum install git -y && git clone https://github.com/PureStorage-OpenConnect/TestD
 
 Launch an "Introduction to FlashArray" lab from testdrive. Note that these scripts will not run in other environments without modification.
 
-Log in to the Linux VM using the desktop icon
+Log in to the Linux VM as root (password can be found under the TestDrive credentials tab) using the desktop icon
+
+Install git with:
+
+```
+yum install git
+```
 
 clone the repo with:
 ```

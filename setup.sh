@@ -9,12 +9,15 @@ set -o nounset
 set -o pipefail
 
 function main() {
-  
+
   #Call for any external install files
   kubesprayinstall="./installKubernetes.sh"     #get the most recent kubespray install
   ansibleinstall="./installAnsible.sh"
-  
 
+  function addKnownHost () {
+
+
+  }
   # Install necessary packages. Currently, only python2 installed.
   # Setup host keys for ansible
   function genKeys () {
@@ -23,17 +26,24 @@ function main() {
       echo "Skipping ssh-keygen. id_rsa already exists"
   else
       ssh-keygen -t rsa -N '' -q -f /root/.ssh/id_rsa
+      #Add localhost to known_hosts
+      ssh-keyscan -H localhost >> ~/.ssh/known_hosts
       #cat ~/.ssh/id_rsa.pub >> /home/pureuser/.ssh/authorized_keys
       #Populate the 'known_hosts' file
       sshpass -p pureuser ssh-copy-id root@localhost
   fi
   }
 
+  function setAuthorizedKeys () {
+    cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+    chmod 600 /root/.ssh/authorized_keys
+  }
+
 
   function testSSH() {
     ssh localhost uptime
   }
-  testSSH
+
 
   if [[ $? -eq 0 ]];then
     echo "SSH is all good."
@@ -45,17 +55,17 @@ function main() {
     echo " "
     echo " "
   fi
- 
+
   function installPackages() {
     #install all required Linux packages
     APACKG=( epel-release
-             python3 
+             python3
 	     python3-pip
              sg3_utils
              centos-release-ansible-29
              ansible
              vim
-             python2-jmespath 
+             python2-jmespath
              sshpass
            )
 
@@ -79,7 +89,7 @@ function main() {
     echo "alias P='cd ~/ansibletest/Playbooks'" >> ~/.bashrc
 
   }
-  
+
   function setApi() {
       fa1_ip='10.0.0.11'
       fa2_ip='10.0.0.21'
@@ -124,9 +134,10 @@ function main() {
   #Let's run everything
   installPackages
   genKeys
+  testSSH
   setApi
   installAnsible
-  
+
   echo " =============================== "
   echo " "
   echo "If you'd like to install Kubernetes, answer 'yes' to the next prompt"
@@ -144,7 +155,7 @@ function main() {
   echo " "
 }
 if [[ $(id -u) -ne 0 ]]; then
-   echo "This script must be run as root" 
+   echo "This script must be run as root"
    exit 1
 fi
 
