@@ -98,6 +98,9 @@ function main() {
         fa2_token=$(sshpass -p pureuser ssh pureuser@${fa2_ip} "pureadmin list --api-token --expose --notitle pureuser" | awk '{print $3}')
         echo "fa1_token: $fa1_token" >> ./resources/testdrive_vars.yaml
         echo "fa2_token: $fa2_token" >> ./resources/testdrive_vars.yaml
+        sed -i "s/FA1Token/${fa1_token}/g" ./resources/kubernetes/pso_values.yaml
+        sed -i "s/FA2Token/${fa2_token}/g" ./resources/kubernetes/pso_values.yaml
+
   }
 
   function installAnsible() {
