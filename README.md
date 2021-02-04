@@ -23,19 +23,22 @@ Log in to the Linux VM (linux1) as root (password can be found under the TestDri
 
 Install git with:
 
-```
-yum install git
+```bash
+yum install git -y
 ```
 
 clone the repo with:
-```
+
+```bash
 git clone https://github.com/PureStorage-OpenConnect/TestDriveNewStack
 ```
 
 Run the setup.sh script by typing the following:
-```
+
+```bash
+cd TestDriveNewStack
 git checkout testdrive-beta
-~/TestDriveNewStack/setup.sh
+./setup.sh
 ```
 
 ## Try out Ansible
