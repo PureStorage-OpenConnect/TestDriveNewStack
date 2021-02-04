@@ -44,10 +44,9 @@ function main() {
   if [[ $? -eq 0 ]];then
     echo "SSH is all good."
   else
-    echo "###########################################################"
-    echo "Check for ssh files before running playbooks"
-    echo " "
-    echo "#############################################################"
+    echo "##########################################################"
+    echo "#### Check for ssh files before running playbooks ########"
+    echo "##########################################################"
     echo " "
     echo " "
   fi
@@ -78,12 +77,14 @@ function main() {
         fi
     done
 
-    echo "##########################################"
-    echo "####  Installing py-pure-client       ####"
-    echo "##########################################"
+    echo "###################################################################"
+    echo "####  Installing py-pure-client and purestorage Python modules ####"
+    echo "###################################################################"
     echo " "
 
     pip3 install py-pure-client
+    pip3 install purestorage
+    
   #You don't need to use these, but they can help with less typing.
 
     echo "" >> ~/.bashrc
