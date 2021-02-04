@@ -13,15 +13,11 @@ Make sure to run `setup.sh` in order to set up your Pure Test Drive environment.
 
 ## Getting started
 
-*NOTE: With the new testdrive beta, I would recommend using the following command:*
-
-```
-yum install git -y && git clone https://github.com/PureStorage-OpenConnect/TestDriveNewStack && cd TestDriveNewStack && git checkout testdrive-beta
-```
+*NOTE: With the updated TestDrive Interfaces the many items have changed. Please validate you are using the latest repo.*
 
 Launch an "Introduction to FlashArray" lab from testdrive. Note that these scripts will not run in other environments without modification.
 
-Log in to the Linux VM as root (password can be found under the TestDrive credentials tab) using the desktop icon
+Log in to the Linux VM (linux1) as root (password can be found under the TestDrive credentials tab) using the desktop icon
 
 Install git with:
 
@@ -36,16 +32,19 @@ git clone https://github.com/PureStorage-OpenConnect/TestDriveNewStack
 
 Run the setup.sh script by typing the following:
 ```
+git checkout testdrive-beta
 ~/TestDriveNewStack/setup.sh
 ```
 
 ## Try out Ansible
 
-Once setup is finished, you can then you can run `ansible-playbook <filename>`. Running them in order (0-6) is recommended.
+Once setup is finished, you can then you can run `ansible-playbook --ask-vault-pass <filename>`. Requires vault password of **pure**.
+
+Running them in order (0-6) is recommended.
 
 The playbooks are straightforward and actually demonstrate many of the things that Ansible is great at doing.
 
-* 0_getInfo.yaml - Shows a simple method of gathering data - Run with `ansible-playbook --ask-vault-pass 0_getInfo.yaml` - Requires vault password of **pure**.
+* 0_getInfo.yaml - Shows a simple method of gathering data
 * 1_modHost.yaml - Fixes some inconsistent capitalization between the host and the array.
 * 2_createVol.yaml - You can see how Anible will create, map, format, mount, and edit /etc/fstab, all in one easy command.
 * 3_createActiveCluster.yaml - Shamelessly stolen from @sdodsley, this will create a synchronous relationship between 2 Flasharrays and protect our volume
