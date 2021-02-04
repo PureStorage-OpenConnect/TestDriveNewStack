@@ -18,6 +18,8 @@ function installSDK() {
   echo " "
   python3 -m pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org purestorage
   python3 -m pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org jmespath
+  python3 -m pip install --trusted-host files.pythonhosted.org --trusted-host pypi.org --trusted-host pypi.python.org py-pure-client
+
 }
 
 # Install the Pure Storage collection
