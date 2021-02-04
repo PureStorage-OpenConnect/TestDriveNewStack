@@ -78,6 +78,12 @@ function main() {
         fi
     done
 
+    echo "##########################################"
+    echo "####  Installing py-pure-client       ####"
+    echo "##########################################"
+    echo " "
+
+    pip3 install py-pure-client
   #You don't need to use these, but they can help with less typing.
 
     echo "" >> ~/.bashrc
