@@ -13,11 +13,13 @@ Make sure to run `setup.sh` in order to set up your Pure Test Drive environment.
 
 ## Getting started
 
-*NOTE: With the updated TestDrive Interfaces the many items have changed. Please validate you are using the latest repo.*
+**NOTE: With the updated TestDrive Interfaces the many items have changed. Please validate you are using the latest repo.**
 
-Launch an "Introduction to FlashArray" lab from testdrive. Note that these scripts will not run in other environments without modification.
+Launch an "Introduction to FlashArray" lab from Pure TestDrive. 
 
-Log in to the Linux VM (linux1) as root (password can be found under the TestDrive credentials tab) using the desktop icon
+> Note that these scripts will not run in other environments without modification.
+
+Log in to the Linux VM (linux1) as root (password can be found under the TestDrive credentials tab) using the desktop icon or putty.
 
 Install git with:
 
