@@ -37,7 +37,6 @@ Run the setup.sh script by typing the following:
 
 ```bash
 cd TestDriveNewStack
-git checkout testdrive-beta
 ./setup.sh
 ```
 
