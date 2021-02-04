@@ -17,10 +17,10 @@
             api_token: "{{ fa1_token }}"
           register: fa1_info
 
-        - name: Rename volume linux-lun-01 to boot vol!
+        - name: Rename volume LinuxVol1 to linux1-00
           purefa_volume:
-            name: linux-lun-01
-            rename: linux-boot-vol
+            name: LinuxVol1
+            rename: linux1-00
             fa_url: "{{ fa1_ip }}"
             api_token: "{{ fa1_token }}"
 ...
