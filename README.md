@@ -61,46 +61,4 @@ As you can see, they are simple, self describing, and above all, *functional*. W
 Click here for more about [Pure Test Drive](https://www.purestorage.com/products/flasharray-x/test-drive.html)
 
 
-# To Be Tested Still (WIP)
-## Try out Kubernetes with Kubespray
-
-Need persistent storage for your containers? Well, now you can simply have Kubernetes spin up a container and all you need to do is state whether or not you block or file, and how much!
-
-Here are some files to get you started. Simply run `kubectl apply -f <filename>` to get started.
-
-
-
-* 1_createPVC.yaml - will create a persistent volume claim and let you see you easily interact with the Pure FlashArray.
-* 2_minio.yaml -
-* 3_service.yaml -
-* 4_createsnap.yaml
-* 5_restoresnap.yaml
-* 6_minio-2.yaml
-* 7_service-2.yaml
-
-After step 3, you can now log to minio using the service port. Find the port with the kubectl get svc (should always be 172.16.3.11 and 9000) command. http://<linuxIP>:<port> Username/password: minio:minio123
-
-Continuing with the rest of the commands, which will take a snap and clone a new PVC from that snapshot. You can then continue with spinning up a new minio instance (default will be port 9001).
-
-For a snap restore demo, you can scale to 0 replicas, restore the snap, and scale replicas to 1. The command to scale replicas is:
-kubectl scale deploy minio-deployment --replicas=0
-
-## Try out PSO Explorer
-
-Pure Service Orchestrator™ Explorer (or PSO Explorer) provides a web based user interface for Pure Service Orchestrator™. It shows details of the persistent volumes and snapshots that have been provisioned using PSO, showing provisioned space, actual used space, performance and growth characteristics. The PSO Explorer dashboard provides a quick overview of the number of volumes, snapshots, storageclasses and arrays in the cluster, in addition to the volume usage, the volume growth over the last 24 hours and cluster-level performance statistics.
-
-Install by running installPSOExplorer.sh
-
-Check the status by running:
-```
-kubectl get service pso-explorer -n psoexpl
-```
-
-External IP doesn't currently populate, use the linux host IP and the port exposed with the above command (e.g. http://172.16.3.11:27011)
-
-````
-http://<ip address>:<port>/
-````
-
-
 For any questions, reach out to bkuebler\@gmail.com or chris\@ccrow.org
