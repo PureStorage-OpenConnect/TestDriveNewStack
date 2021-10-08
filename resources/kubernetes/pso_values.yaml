@@ -1,7 +1,0 @@
-clusterID: puretestdrive01
-arrays:
-  FlashArrays:
-    - MgmtEndPoint: "10.0.0.11"
-      APIToken: "FA1Token"
-    - MgmtEndPoint: "10.0.0.21"
-      APIToken: "FA2Token"

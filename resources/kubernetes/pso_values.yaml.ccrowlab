@@ -1,7 +1,0 @@
-clusterID: puretestdrive01
-arrays:
-  FlashArrays:
-    - MgmtEndPoint: "fa1.lab.local"
-      APIToken: "207fe8f2-35c5-8ded-e358-871cf5c7e0b5"
-    - MgmtEndPoint: "fa2.lab.local"
-      APIToken: "3e56ccfd-e4a0-f3cc-0829-f0512ef1f715"
