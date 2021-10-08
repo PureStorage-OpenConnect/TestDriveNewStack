@@ -112,21 +112,6 @@ function main() {
     fi
   }
   echo " "
-  function installKubernetes() {
-
-    if [[ -f $kubesprayinstall ]]; then
-      while true; do
-          read -p "Do you wish to install Kubernetes?" yn
-          case $yn in
-              [Yy]* ) $kubesprayinstall;break;;
-              [Nn]* ) exit;;
-              * ) echo "Please answer yes or no.";;
-          esac
-      done
-    else
-      echo "Please check to make sure that $kubesprayinstall exists"
-    fi
-  }
 
 
   #Let's run everything
@@ -135,16 +120,6 @@ function main() {
   testSSH
   setApi
   installAnsible
-
-  echo " =============================== "
-  echo " "
-  echo "If you'd like to install Kubernetes, answer 'yes' to the next prompt"
-  echo "Please note that it could take up to 15 minutes to prepare. "
-  echo "If you answer 'no', you can manually run the installKubernetes.sh script"
-  echo "when you'd like"
-  echo " "
-  echo " ================================"
-  installKubernetes
 
   sleep 3
   echo " "
