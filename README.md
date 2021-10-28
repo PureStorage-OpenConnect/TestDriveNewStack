@@ -2,14 +2,13 @@
 
 # TestDriveNewStack
 
-This project was born out of a desire to offer our SE's, our customers, and potential customers a simple, concise, example of how valuable [Pure Service Orchestrator](https://github.com/purestorage/pso-csi#pure-service-orchestrator-pso-csi-driver)  and [Ansible Automation](https://galaxy.ansible.com/purestorage) could, or will, be in their environment.
+This project was born out of a desire to offer our SE's, our customers, and potential customers a simple, concise way to see how [Ansible Automation](https://galaxy.ansible.com/purestorage) could, or will, help them in their environment.
 
 Make sure to run `setup.sh` in order to set up your Pure Test Drive environment.
 
 ## Build Notes
-* Added PSO via Kubespray
 * You can now create volumes with user input, feel free to modify for use with both virtual FlashArrays!
-* Added PSO Explorer, which you should definitely take a look at!
+
 
 ## Getting started
 
