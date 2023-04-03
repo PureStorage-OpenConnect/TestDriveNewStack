@@ -41,7 +41,7 @@ cd TestDriveNewStack
 
 ## Try out Ansible
 
-Once setup is finished, you can then you can run `ansible-playbook --ask-vault-pass <filename>`. Requires vault password of **pure**.
+Once setup is finished, you can then run `ansible-playbook --ask-vault-pass <filename>`. Requires vault password of **pure**.
 
 Running them in order (0-6) is recommended.
 
